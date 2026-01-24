@@ -21,7 +21,7 @@ public class LudoPanel extends JPanel {
         Graphics2D g2D= (Graphics2D) g;
         
         
-        
+        // This is First Square of Ludo in My game . 
         
         g2D.setColor(Color.WHITE);
         g2D.fillRect(0, 0, PerCell*NumberOfSquare, PerCell*NumberOfSquare);
@@ -30,6 +30,39 @@ public class LudoPanel extends JPanel {
        g2D.fillRect(150,0,30,150);        g2D.fillRect(0, 0, 150, 30);
        
         g2D.fillRect(30, 180, 30, 60);    g2D.fillRect(60, 210, 150, 30);
+        int[] pxar={180,180,210};
+        int[] pyar={240,270,240};
+        g2D.fillPolygon(pxar,pyar,3);
+        pxar = new int[]{210, 210, 225};
+        pyar = new int[]{240,210,225};
+         g2D.fillPolygon(pxar,pyar,3);
+         pxar = new int[]{180,180,210};
+         pyar= new int[]{180,210,210};
+         g2D.fillPolygon(pxar,pyar,3);
+         
+         g2D.setStroke(new BasicStroke(2));
+         g2D.drawArc(105, 45, 30, 30, 180, 180);
+         g2D.drawArc(105, 45, 30, 30, 180, -180);
+         
+         g2D.drawArc(105, 105, 30, 30, 180, 180);
+         g2D.drawArc(105, 105, 30, 30, 180, -180);
+         
+         g2D.drawArc(45, 45, 30, 30, 180, 180);
+         g2D.drawArc(45, 45, 30, 30, 180, -180);
+         
+         g2D.drawArc(45, 105, 30, 30, 180, 180);
+         g2D.drawArc(45, 105, 30, 30, 180, -180);
+         
+         // The End of my first Part code. . . 
+         
+         
+         
+         
+         
+         
+        
+
+        
         
         
         
