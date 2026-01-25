@@ -10,8 +10,19 @@ public class LudoPanel extends JPanel {
 
     final static int PerCell = 30;
     final static int NumberOfSquare = 15;
+    //static  JLabel imglabel;
     LudoPanel(){
+        this.setLayout(null);
        this.setPreferredSize(new Dimension(450, 450)); 
+     ImageIcon star = signAddOnPanel.IMGStar(); 
+    // JLabel imglabel = new JLabel(star);
+     loadImg(star);
+     
+     
+//imglabel.setBounds(60, 240, 27, 27); 
+//this.add(imglabel);
+
+
                
     }
     @Override
@@ -84,19 +95,65 @@ public class LudoPanel extends JPanel {
          //Rectangle Part
          
          g2D.setPaint(Color.decode("#C9A227"));// Color select
+         g2D.fillRect(270, 270, 180, 30);    g2D.fillRect(420, 270, 30, 180);
+         g2D.fillRect(270, 270, 30, 180);    g2D.fillRect(270, 420, 180, 30);
+
+          // Extra Part
+         g2D.fillRect(270, 210, 150, 30);   g2D.fillRect(390, 240, 30, 30);
          
-
-
+           // Triangle Part
+           
+            pxar = new int[]{270,270,225};
+           pyar = new int[]{270,180,225};
+          g2D.fillPolygon(pxar, pyar, 3);
           
+          // Circle part of mid 
+          g2D.setStroke(new BasicStroke(2));
           
+          g2D.drawArc(375, 315, 30, 30, 180, 180);
+         g2D.drawArc(375, 315, 30, 30, 180, -180);
          
+         g2D.drawArc(315, 315, 30, 30, 180, 180);
+         g2D.drawArc(315, 315, 30, 30, 180, -180);
          
+         g2D.drawArc(315, 375, 30, 30, 180, 180);
+         g2D.drawArc(315, 375, 30, 30, 180, -180);
          
+         g2D.drawArc(375, 375, 30, 30, 180, 180);
+         g2D.drawArc(375, 375, 30, 30, 180, -180);
+         // The End of my Third Part code. . . 
          
+         // This is Fourth Square of Ludo in my Game.....
+         //Rectangle Part
+         
+         g2D.setColor(Color.decode("#283593"));// Color set 
+         
+        g2D.fillRect(0, 270, 180, 30);  g2D.fillRect(150, 270, 30, 180);
+        g2D.fillRect(0, 420, 180, 30); g2D.fillRect(0, 270, 30, 180);
         
-
+        // Extra Part
+        g2D.fillRect(210, 270, 30, 150); g2D.fillRect(180, 390, 30, 30);
         
         
+         // Triangle Part
+           
+            pxar = new int[]{180,270,225};
+           pyar = new int[]{270,270,225};
+          g2D.fillPolygon(pxar, pyar, 3);
+          
+           // Circle part of mid
+         g2D.setStroke(new BasicStroke(2));
+         g2D.drawArc(105, 315, 30, 30, 180, 180);
+         g2D.drawArc(105, 315, 30, 30, 180, -180);
+         
+         g2D.drawArc(105, 375, 30, 30, 180, 180);
+         g2D.drawArc(105, 375, 30, 30, 180, -180);
+         
+         g2D.drawArc(45, 315, 30, 30, 180, 180);
+         g2D.drawArc(45, 315, 30, 30, 180, -180);
+         
+         g2D.drawArc(45, 375, 30, 30, 180, 180);
+         g2D.drawArc(45, 375, 30, 30, 180, -180);
         
         
         
@@ -113,4 +170,19 @@ public class LudoPanel extends JPanel {
        
         
     }
+    
+    void loadImg(ImageIcon x)
+    {
+        
+        int[] imx=new int[]{180,360,240,60};
+        int[] imy=new int[]{60,180,360,240};
+        for(int i=0;i<4;i++)
+        {JLabel y= new JLabel(x);
+            y.setBounds(imx[i], imy[i], 27, 27); 
+            this.add(y);
+        }
+        
+        
+    }
+    
 }
