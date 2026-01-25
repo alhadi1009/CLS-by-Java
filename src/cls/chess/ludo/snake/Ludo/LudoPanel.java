@@ -67,17 +67,17 @@ public class LudoPanel extends JPanel {
         
          // Circle part of mid
          g2D.setStroke(new BasicStroke(2));
-         g2D.drawArc(105, 45, 30, 30, 180, 180);
-         g2D.drawArc(105, 45, 30, 30, 180, -180);
+         g2D.fillArc(105, 45, 30, 30, 180, 180);
+         g2D.fillArc(105, 45, 30, 30, 180, -180);
          
-         g2D.drawArc(105, 105, 30, 30, 180, 180);
-         g2D.drawArc(105, 105, 30, 30, 180, -180);
+         g2D.fillArc(105, 105, 30, 30, 180, 180);
+         g2D.fillArc(105, 105, 30, 30, 180, -180);
          
-         g2D.drawArc(45, 45, 30, 30, 180, 180);
-         g2D.drawArc(45, 45, 30, 30, 180, -180);
+         g2D.fillArc(45, 45, 30, 30, 180, 180);
+         g2D.fillArc(45, 45, 30, 30, 180, -180);
          
-         g2D.drawArc(45, 105, 30, 30, 180, 180);
-         g2D.drawArc(45, 105, 30, 30, 180, -180);
+         g2D.fillArc(45, 105, 30, 30, 180, 180);
+         g2D.fillArc(45, 105, 30, 30, 180, -180);
          
          // The End of my first Part code. . . 
          
@@ -97,17 +97,17 @@ public class LudoPanel extends JPanel {
           // Circle part of mid 
             g2D.setStroke(new BasicStroke(2));
             
-         g2D.drawArc(375, 45, 30, 30, 180, 180);
-         g2D.drawArc(375, 45, 30, 30, 180, -180);
+         g2D.fillArc(375, 45, 30, 30, 180, 180);
+         g2D.fillArc(375, 45, 30, 30, 180, -180);
          
-         g2D.drawArc(315, 105, 30, 30, 180, 180);
-         g2D.drawArc(315, 105, 30, 30, 180, -180);
+         g2D.fillArc(315, 105, 30, 30, 180, 180);
+         g2D.fillArc(315, 105, 30, 30, 180, -180);
          
-         g2D.drawArc(315, 45, 30, 30, 180, 180);
-         g2D.drawArc(315, 45, 30, 30, 180, -180);
+         g2D.fillArc(315, 45, 30, 30, 180, 180);
+         g2D.fillArc(315, 45, 30, 30, 180, -180);
          
-         g2D.drawArc(375, 105, 30, 30, 180, 180);
-         g2D.drawArc(375, 105, 30, 30, 180, -180);
+         g2D.fillArc(375, 105, 30, 30, 180, 180);
+         g2D.fillArc(375, 105, 30, 30, 180, -180);
          // The End of my Second Part code. . . 
          
          // This is Third Square of Ludo in my Game.....
@@ -129,17 +129,17 @@ public class LudoPanel extends JPanel {
           // Circle part of mid 
           g2D.setStroke(new BasicStroke(2));
           
-          g2D.drawArc(375, 315, 30, 30, 180, 180);
-         g2D.drawArc(375, 315, 30, 30, 180, -180);
+          g2D.fillArc(375, 315, 30, 30, 180, 180);
+         g2D.fillArc(375, 315, 30, 30, 180, -180);
          
-         g2D.drawArc(315, 315, 30, 30, 180, 180);
-         g2D.drawArc(315, 315, 30, 30, 180, -180);
+         g2D.fillArc(315, 315, 30, 30, 180, 180);
+         g2D.fillArc(315, 315, 30, 30, 180, -180);
          
-         g2D.drawArc(315, 375, 30, 30, 180, 180);
-         g2D.drawArc(315, 375, 30, 30, 180, -180);
+         g2D.fillArc(315, 375, 30, 30, 180, 180);
+         g2D.fillArc(315, 375, 30, 30, 180, -180);
          
-         g2D.drawArc(375, 375, 30, 30, 180, 180);
-         g2D.drawArc(375, 375, 30, 30, 180, -180);
+         g2D.fillArc(375, 375, 30, 30, 180, 180);
+         g2D.fillArc(375, 375, 30, 30, 180, -180);
          // The End of my Third Part code. . . 
          
          // This is Fourth Square of Ludo in my Game.....
@@ -162,30 +162,53 @@ public class LudoPanel extends JPanel {
           
            // Circle part of mid
          g2D.setStroke(new BasicStroke(2));
-         g2D.drawArc(105, 315, 30, 30, 180, 180);
-         g2D.drawArc(105, 315, 30, 30, 180, -180);
+         g2D.fillArc(105, 315, 30, 30, 180, 180);
+         g2D.fillArc(105, 315, 30, 30, 180, -180);
          
-         g2D.drawArc(105, 375, 30, 30, 180, 180);
-         g2D.drawArc(105, 375, 30, 30, 180, -180);
+         g2D.fillArc(105, 375, 30, 30, 180, 180);
+         g2D.fillArc(105, 375, 30, 30, 180, -180);
          
-         g2D.drawArc(45, 315, 30, 30, 180, 180);
-         g2D.drawArc(45, 315, 30, 30, 180, -180);
+         g2D.fillArc(45, 315, 30, 30, 180, 180);
+         g2D.fillArc(45, 315, 30, 30, 180, -180);
          
-         g2D.drawArc(45, 375, 30, 30, 180, 180);
-         g2D.drawArc(45, 375, 30, 30, 180, -180);
+         g2D.fillArc(45, 375, 30, 30, 180, 180);
+         g2D.fillArc(45, 375, 30, 30, 180, -180);
         
         
         
         
-         g2D.setColor(Color.GRAY);
-    g2D.setStroke(new BasicStroke(.1f));
-    for (int row = 0; row < NumberOfSquare; row++) {
-        for (int col = 0; col < NumberOfSquare; col++) {
-            int x = col * PerCell;
-            int y = row * PerCell;
-            g2D.drawRect(x, y, PerCell, PerCell);
+         g2D.setColor(Color.decode("#000000"));// CAN BE USED #696969;;and 1 instead of .1f; 
+    g2D.setStroke(new BasicStroke(.1F));
+    g2D.drawRect(0, 0, 480, 480);
+    for(int row= 180;row<=240;row+=30)
+    {
+        for(int col=0;col<=150;col+=30)
+        {
+            g2D.drawRect(row, col, 30, 30);
         }
     }
+    for(int row= 180;row<=240;row+=30)
+    {
+        for(int col=270;col<=450;col+=30)
+        {
+            g2D.drawRect(row, col, 30, 30);
+        }
+    }
+    for(int row= 0;row<=150;row+=30)
+    {
+        for(int col=180;col<=240;col+=30)
+        {
+            g2D.drawRect(row, col, 30, 30);
+        }
+    }
+     for(int row= 270;row<=450;row+=30)
+    {
+        for(int col=180;col<=240;col+=30)
+        {
+            g2D.drawRect(row, col, 30, 30);
+        }
+    }
+     
        
         
     }
