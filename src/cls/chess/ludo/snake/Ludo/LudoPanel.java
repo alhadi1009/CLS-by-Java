@@ -22,24 +22,20 @@ public class LudoPanel extends JPanel {
         
         
         // This is First Square of Ludo in My game . 
-        
+        // Rectangle Part
         g2D.setColor(Color.WHITE);
         g2D.fillRect(0, 0, PerCell*NumberOfSquare, PerCell*NumberOfSquare);
-       g2D.setPaint(Color.decode("#00796B"));
+       g2D.setPaint(Color.decode("#00796B"));// Color select
        g2D.fillRect(0, 0, 30, 180);       g2D.fillRect(0, 150, 180, 30);   
        g2D.fillRect(150,0,30,150);        g2D.fillRect(0, 0, 150, 30);
-       
+       // Extra Part
         g2D.fillRect(30, 180, 30, 60);    g2D.fillRect(60, 210, 150, 30);
-        int[] pxar={180,180,210};
-        int[] pyar={240,270,240};
+        // Triangle Part
+        int[] pxar={180,180,225};
+        int[] pyar={180,270,225};
         g2D.fillPolygon(pxar,pyar,3);
-        pxar = new int[]{210, 210, 225};
-        pyar = new int[]{240,210,225};
-         g2D.fillPolygon(pxar,pyar,3);
-         pxar = new int[]{180,180,210};
-         pyar= new int[]{180,210,210};
-         g2D.fillPolygon(pxar,pyar,3);
-         
+        
+         // Circle part of mid
          g2D.setStroke(new BasicStroke(2));
          g2D.drawArc(105, 45, 30, 30, 180, 180);
          g2D.drawArc(105, 45, 30, 30, 180, -180);
@@ -55,7 +51,44 @@ public class LudoPanel extends JPanel {
          
          // The End of my first Part code. . . 
          
+         // This is second Square of Ludo in my Game.....
+         //Rectangle Part
+          g2D.setPaint(Color.decode("#8E0038"));// Color select
+          g2D.fillRect(270, 0, 180, 30);     g2D.fillRect(420, 0, 30, 180);
+          g2D.fillRect(270, 150, 180, 30);   g2D.fillRect(270, 0, 30, 180);
+          // Extra Part
+          g2D.fillRect(210,30,30,150);    g2D.fillRect(240, 30, 30, 30);
+          
+          // Triangle Part
+           pxar = new int[]{180,270,225};
+           pyar = new int[]{180,180,225};
+          g2D.fillPolygon(pxar, pyar, 3);
+          
+          // Circle part of mid 
+            g2D.setStroke(new BasicStroke(2));
+            
+         g2D.drawArc(375, 45, 30, 30, 180, 180);
+         g2D.drawArc(375, 45, 30, 30, 180, -180);
          
+         g2D.drawArc(315, 105, 30, 30, 180, 180);
+         g2D.drawArc(315, 105, 30, 30, 180, -180);
+         
+         g2D.drawArc(315, 45, 30, 30, 180, 180);
+         g2D.drawArc(315, 45, 30, 30, 180, -180);
+         
+         g2D.drawArc(375, 105, 30, 30, 180, 180);
+         g2D.drawArc(375, 105, 30, 30, 180, -180);
+         // The End of my Second Part code. . . 
+         
+         // This is Third Square of Ludo in my Game.....
+         //Rectangle Part
+         
+         g2D.setPaint(Color.decode("#C9A227"));// Color select
+         
+
+
+          
+          
          
          
          
