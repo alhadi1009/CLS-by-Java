@@ -9,13 +9,35 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.net.URL;
 import javax.swing.*;
 
-public class LudoGame {
+public class LudoGame extends JFrame {
+    LudoGame()
+    { ImageIcon icon = signAddOnPanel.IMGDownArrow();
+
+      //  this.setIconImage(icon.getImage());
+        ImageIcon image = new ImageIcon("Icon/LudoIcon.png");
+this.setIconImage(image.getImage());
+
+
+        
+        
+        this.setBackground(Color.PINK);
+
+    }
+
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Ludo Game");
+       
+    LudoGame frame = new LudoGame();
+    frame.setTitle("Ludo Game..");
+    
+    ImageIcon icon = signAddOnPanel.LudoIcon();
+frame.setIconImage(icon.getImage());
+
+        
 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-frame.setBackground(Color.PINK);
+//frame.setBackground(Color.PINK);
 frame.setSize(1000,1000);
 
 JPanel adder=new JPanel();

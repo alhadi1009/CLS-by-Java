@@ -15,13 +15,32 @@ public class LudoPanel extends JPanel {
         this.setLayout(null);
        this.setPreferredSize(new Dimension(450, 450)); 
      ImageIcon star = signAddOnPanel.IMGStar(); 
-    // JLabel imglabel = new JLabel(star);
      loadImg(star);
+     // Down arrow;
+     ImageIcon arrow = signAddOnPanel.IMGDownArrow();
+     JLabel y= new JLabel(arrow);
+            y.setBounds(210,0, 27, 27); 
+            this.add(y);
      
-     
-//imglabel.setBounds(60, 240, 27, 27); 
-//this.add(imglabel);
-
+    // Up arrow;
+    arrow = signAddOnPanel.IMGUpArrow();
+    y=new JLabel(arrow);
+     y.setBounds(210,420, 27, 27); 
+            this.add(y);
+    // Right arrow;
+    
+    arrow = signAddOnPanel.IMGRightArrow();
+    y=new JLabel(arrow);
+     y.setBounds(0,210, 27, 27); 
+            this.add(y);
+    // Left arrow;
+    arrow = signAddOnPanel.IMGLeftArrow();
+    y=new JLabel(arrow);
+     y.setBounds(420,210, 27, 27); 
+            this.add(y);
+            
+    
+ 
 
                
     }
@@ -171,7 +190,7 @@ public class LudoPanel extends JPanel {
         
     }
     
-    void loadImg(ImageIcon x)
+   final void loadImg(ImageIcon x)
     {
         
         int[] imx=new int[]{180,360,240,60};
