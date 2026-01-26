@@ -10,7 +10,7 @@ public class LudoPanel extends JPanel {
 
     final static int PerCell = 30;
     final static int NumberOfSquare = 15;
-    //static  JLabel imglabel;
+    
     LudoPanel(){
         this.setLayout(null);
        this.setPreferredSize(new Dimension(450, 450)); 
@@ -113,7 +113,7 @@ public class LudoPanel extends JPanel {
          // This is Third Square of Ludo in my Game.....
          //Rectangle Part
          
-         g2D.setPaint(Color.decode("#C9A227"));// Color select
+         g2D.setPaint(Color.decode("#CC5500"));// Color select
          g2D.fillRect(270, 270, 180, 30);    g2D.fillRect(420, 270, 30, 180);
          g2D.fillRect(270, 270, 30, 180);    g2D.fillRect(270, 420, 180, 30);
 
