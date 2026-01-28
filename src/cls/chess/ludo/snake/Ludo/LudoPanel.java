@@ -10,12 +10,17 @@ public class LudoPanel extends JPanel {
 
     final static int PerCell = 30;
     final static int NumberOfSquare = 15;
+    int cnt=0;
     
     LudoPanel(){
         this.setLayout(null);
        this.setPreferredSize(new Dimension(450, 450)); 
      ImageIcon star = signAddOnPanel.IMGStar(); 
      loadImg(star);
+  
+
+     
+     Function();
      // Down arrow;
      ImageIcon arrow = signAddOnPanel.IMGDownArrow();
      JLabel y= new JLabel(arrow);
@@ -43,6 +48,19 @@ public class LudoPanel extends JPanel {
  
 
                
+    }
+    
+    
+  void  Function()
+    {
+//    this.add(PawnLocation.add(45, 35));
+    this.add(PawnLocation.addPawnGreenCircle(45, 35));
+    this.add(PawnLocation.addPawnGreenCircle(105, 35));
+     this.add(PawnLocation.addPawnGreenCircle(45, 95));
+    this.add(PawnLocation.addPawnGreenCircle(105, 95));
+
+     
+       
     }
     @Override
     public void paintComponent(Graphics g)

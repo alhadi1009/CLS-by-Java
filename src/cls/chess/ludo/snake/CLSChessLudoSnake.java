@@ -4,6 +4,10 @@
  */
 package cls.chess.ludo.snake;
 
+import cls.chess.ludo.snake.Ludo.PawnLocation;
+import java.awt.FlowLayout;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Al Hadi
@@ -15,6 +19,7 @@ public class CLSChessLudoSnake {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+      
     }
     
 }
