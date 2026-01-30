@@ -42,14 +42,14 @@ public class Pawn {
    }
     public static ImageIcon REDCircle()
    {
-       ImageIcon originalIcon=new ImageIcon(Pawn.class.getResource("Icon/Circle1.png"));
+       ImageIcon originalIcon=new ImageIcon(Pawn.class.getResource("Icon/red.png"));
                Image originalImage = originalIcon.getImage();
-        Image resizedImage = originalImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
+        Image resizedImage = originalImage.getScaledInstance(30, 30, Image.SCALE_SMOOTH);
         return new ImageIcon(resizedImage);
    }
     public static ImageIcon ChangeCircle()
    {
-       ImageIcon originalIcon=new ImageIcon(Pawn.class.getResource("Icon/Circle3.png"));
+       ImageIcon originalIcon=new ImageIcon(Pawn.class.getResource("Icon/Circle2.png"));
                Image originalImage = originalIcon.getImage();
         Image resizedImage = originalImage.getScaledInstance(25, 25, Image.SCALE_SMOOTH);
         return new ImageIcon(resizedImage);

@@ -18,7 +18,7 @@ import javax.swing.JPanel;
 public class PawnLocation {
     
   
-    
+  
   public static JLayeredPane addPawnGreenCircle(int x, int y) {
 
     // parent cell (Ludo cell)
@@ -41,6 +41,78 @@ public class PawnLocation {
     layeredPane.add(greenPawn, Integer.valueOf(1));
     layeredPane.add(redPawn, Integer.valueOf(2));   
 
+    return layeredPane;
+}
+  public static JLayeredPane addPawnRedCircle(int x, int y) {
+
+    // parent cell (Ludo cell)
+    JLayeredPane layeredPane = new JLayeredPane();
+    layeredPane.setLayout(null);
+    layeredPane.setBounds(x, y, 40, 40);
+    layeredPane.setFocusable(false);
+
+    // bottom pawn (25x25)
+    JLabel redPawn = new JLabel(Pawn.RedPawn());
+    redPawn.setBounds(3,5, 25, 25);   // inside 40x40
+    redPawn.setFocusable(false);
+
+    // top pawn (25x25)
+    JLabel greenPawn = new JLabel(Pawn.REDCircle());
+    greenPawn.setBounds(-2, 7, 35, 35);  // slightly up
+    greenPawn.setFocusable(false);
+
+    // Z-index (top > bottom)
+    layeredPane.add(greenPawn, Integer.valueOf(1));
+    layeredPane.add(redPawn, Integer.valueOf(2));   
+
+    return layeredPane;
+}
+  public static JLayeredPane addPawnYellowCircle(int x, int y) {
+
+    // parent cell (Ludo cell)
+    JLayeredPane layeredPane = new JLayeredPane();
+    layeredPane.setLayout(null);
+    layeredPane.setBounds(x, y, 40, 40);
+    layeredPane.setFocusable(false);
+
+    // bottom pawn (25x25)
+    JLabel redPawn = new JLabel(Pawn.YellowPawn());
+    redPawn.setBounds(3,5, 25, 25);   // inside 40x40
+    redPawn.setFocusable(false);
+
+    // top pawn (25x25)
+    JLabel greenPawn = new JLabel(Pawn.REDCircle());
+    greenPawn.setBounds(-2, 7, 35, 35);  // slightly up
+    greenPawn.setFocusable(false);
+
+    // Z-index (top > bottom)
+    layeredPane.add(greenPawn, Integer.valueOf(1));
+    layeredPane.add(redPawn, Integer.valueOf(2));   
+    
+    return layeredPane;
+}
+public static JLayeredPane addPawnBlueCircle(int x, int y) {
+
+    // parent cell (Ludo cell)
+    JLayeredPane layeredPane = new JLayeredPane();
+    layeredPane.setLayout(null);
+    layeredPane.setBounds(x, y, 40, 40);
+    layeredPane.setFocusable(false);
+
+    // bottom pawn (25x25)
+    JLabel redPawn = new JLabel(Pawn.BluePawn());
+    redPawn.setBounds(3,5, 25, 25);   // inside 40x40
+    redPawn.setFocusable(false);
+
+    // top pawn (25x25)
+    JLabel greenPawn = new JLabel(Pawn.REDCircle());
+    greenPawn.setBounds(-2, 7, 35, 35);  // slightly up
+    greenPawn.setFocusable(false);
+
+    // Z-index (top > bottom)
+    layeredPane.add(greenPawn, Integer.valueOf(1));
+    layeredPane.add(redPawn, Integer.valueOf(2));   
+    
     return layeredPane;
 }
 

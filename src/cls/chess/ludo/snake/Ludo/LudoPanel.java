@@ -5,11 +5,15 @@
 package cls.chess.ludo.snake.Ludo;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class LudoPanel extends JPanel {
-
-    final static int PerCell = 30;
-    final static int NumberOfSquare = 15;
+      private ArrayList<JLayeredPane> greenPawns = new ArrayList<>();
+      private ArrayList<JLayeredPane> redPawns = new ArrayList<>();
+      private ArrayList<JLayeredPane>yellowPawns = new ArrayList<>();
+      private ArrayList<JLayeredPane>bluePawns = new ArrayList<>();
+final static int PerCell=30;
+   final static int NumberOfSquare=15;
     int cnt=0;
     
     LudoPanel(){
@@ -20,7 +24,12 @@ public class LudoPanel extends JPanel {
   
 
      
-     Function();
+     setupGreenPawns();
+     setupRedPawns();
+     setupYellowPawns();
+     setupbluePawns();
+             
+             
      // Down arrow;
      ImageIcon arrow = signAddOnPanel.IMGDownArrow();
      JLabel y= new JLabel(arrow);
@@ -51,17 +60,73 @@ public class LudoPanel extends JPanel {
     }
     
     
-  void  Function()
-    {
-//    this.add(PawnLocation.add(45, 35));
-    this.add(PawnLocation.addPawnGreenCircle(45, 35));
-    this.add(PawnLocation.addPawnGreenCircle(105, 35));
-     this.add(PawnLocation.addPawnGreenCircle(45, 95));
-    this.add(PawnLocation.addPawnGreenCircle(105, 95));
+  private void setupGreenPawns() {
+        // Positions for the 4 green pawns
+        int[][] positions = {
+            {45, 35},
+            {105, 35},
+            {45, 95},
+            {105, 95}
+        };
 
-     
-       
+        for (int i = 0; i < 4; i++) {
+            JLayeredPane pawn = PawnLocation.addPawnGreenCircle(positions[i][0], positions[i][1]);
+            greenPawns.add(pawn);        // store in ArrayList
+            this.add(pawn);              // add to panel
+        }
     }
+  
+ private void setupRedPawns() {
+        // Positions for the 4 red pawns
+        int[][] positions = {
+            {315, 35},
+            {375, 35},
+            {315, 95},
+            {375, 95}
+        };
+
+        for (int i = 0; i < 4; i++) {
+            JLayeredPane pawn = PawnLocation.addPawnRedCircle(positions[i][0], positions[i][1]);
+            redPawns.add(pawn);        // store in ArrayList
+            this.add(pawn);             // add to panel
+        }
+    }
+ 
+ private void setupYellowPawns()
+ {
+     int [][] positions = 
+     {
+         {315,305},
+         {375, 305},
+         {315, 365},
+         {375, 365}
+     };
+             for(int i=0;i<4;i++)
+             {
+                 JLayeredPane pawn = PawnLocation.addPawnYellowCircle(positions[i][0],positions[i][1]);
+                 yellowPawns.add(pawn);
+                 this.add(pawn);
+             }
+ }
+ private void setupbluePawns()
+ {
+     int [][] positions = 
+     {
+         {45,305},
+         {105,305},
+         {45,365},
+         {105,365}
+         
+     };
+     for (int i = 0; i < 4; i++) {
+            JLayeredPane pawn = PawnLocation.addPawnBlueCircle(positions[i][0], positions[i][1]);
+            bluePawns.add(pawn);        // store in ArrayList
+            this.add(pawn);             // add to panel
+        }
+   
+ }
+  
+  
     @Override
     public void paintComponent(Graphics g)
     {
@@ -243,6 +308,22 @@ public class LudoPanel extends JPanel {
         }
         
         
+    }
+    public JLayeredPane getGreenPawn(int index) {
+        if (index < 0 || index >= greenPawns.size()) return null;
+        return greenPawns.get(index);
+    }
+    public JLayeredPane getRedPawn(int index) {
+        if (index < 0 || index >= redPawns.size()) return null;
+        return redPawns.get(index);
+    }
+    public JLayeredPane getYellowPawn(int index) {
+        if (index < 0 || index >= yellowPawns.size()) return null;
+        return yellowPawns.get(index);
+    }
+    public JLayeredPane getBluePawn(int index) {
+        if (index < 0 || index >= bluePawns.size()) return null;
+        return bluePawns.get(index);
     }
     
 }
