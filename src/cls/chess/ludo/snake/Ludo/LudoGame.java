@@ -42,14 +42,23 @@ frame.setSize(1000,1000);
 
 JPanel adder=new JPanel();
 adder.setBackground(Color.pink);
-adder.setLayout(new FlowLayout(FlowLayout.CENTER, 100, 100));
-LudoPanel panel = new LudoPanel();
+adder.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
+JPanel panel = new LudoPanel();
 
 adder.add(panel);
 //frame.setLayout(new BorderLayout());
 
-frame.add(adder, BorderLayout.CENTER);
+   JPanel dicePanel = new JPanel();
+dicePanel.setLayout(new FlowLayout());
+dicePanel.setBackground(Color.PINK);
+JButton diceBtn = new JButton("Roll Dice");
+diceBtn.setPreferredSize(new Dimension(100, 50));
+dicePanel.add(diceBtn);
+adder.add(dicePanel);
 
+    
+  // frame.add(panel);
+frame.add(adder, BorderLayout.CENTER);
 frame.setLocationRelativeTo(null);
 frame.setVisible(true);
 
