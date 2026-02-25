@@ -1,66 +1,76 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package cls.chess.ludo.snake.Ludo;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.net.URL;
+import java.awt.*;
 import javax.swing.*;
 
 public class LudoGame extends JFrame {
-    LudoGame()
-    { ImageIcon icon = signAddOnPanel.IMGDownArrow();
 
-      //  this.setIconImage(icon.getImage());
-        ImageIcon image = new ImageIcon("Icon/LudoIcon.png");
-this.setIconImage(image.getImage());
+    private Dice dice = new Dice();   // ✅ Dice object class level এ
+    private JLabel diceResult;  
+    private GameState gameState;// Dice number দেখানোর জন্য
+
+    public LudoGame() {
+
+        setTitle("Ludo Game..");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(1000, 1000);
+        setLocationRelativeTo(null);
+
+        ImageIcon icon = signAddOnPanel.LudoIcon();
+        setIconImage(icon.getImage());
+
+         gameState = new GameState(4);
+        setupUI();   // UI setup আলাদা method এ
+        setVisible(true);
+    }
+
+    private void setupUI() {
+
+        JPanel adder = new JPanel();
+        adder.setBackground(Color.PINK);
+        adder.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
+
+        // Ludo Board
+        JPanel panel = new LudoPanel();
+        adder.add(panel);
+
+        // Dice Panel
+        JPanel dicePanel = new JPanel();
+        dicePanel.setLayout(new FlowLayout());
+        dicePanel.setBackground(Color.PINK);
+
+        JButton diceBtn = new JButton("Roll Dice");
+        diceBtn.setPreferredSize(new Dimension(120, 50));
+
+        diceResult = new JLabel("INF");
+        diceResult.setFont(new Font("Arial", Font.BOLD, 30));
+
+        // 🎲 Dice Action
+        diceBtn.addActionListener(e -> {
+            int value = dice.roll();
+            diceResult.setText(String.valueOf(value));
+            System.out.println("Dice rolled: " + value);
+            
+             int current = gameState.getCurrentPlayer(); // int
+System.out.println("Current Player: " + PlayerColor.getName(current));
 
 
-        
-        
-        this.setBackground(Color.PINK);
+ gameState.nextTurn();  
 
+            
+        });
+
+        dicePanel.add(diceBtn);
+        dicePanel.add(diceResult);
+
+        adder.add(dicePanel);
+
+        add(adder, BorderLayout.CENTER);
     }
 
     public static void main(String[] args) {
-       
-    LudoGame frame = new LudoGame();
-    frame.setTitle("Ludo Game..");
-    
-    ImageIcon icon = signAddOnPanel.LudoIcon();
-frame.setIconImage(icon.getImage());
-
+        new LudoGame();
         
-frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//frame.setBackground(Color.PINK);
-frame.setSize(1000,1000);
-
-JPanel adder=new JPanel();
-adder.setBackground(Color.pink);
-adder.setLayout(new FlowLayout(FlowLayout.CENTER, 50, 50));
-JPanel panel = new LudoPanel();
-
-adder.add(panel);
-//frame.setLayout(new BorderLayout());
-
-   JPanel dicePanel = new JPanel();
-dicePanel.setLayout(new FlowLayout());
-dicePanel.setBackground(Color.PINK);
-JButton diceBtn = new JButton("Roll Dice");
-diceBtn.setPreferredSize(new Dimension(100, 50));
-dicePanel.add(diceBtn);
-adder.add(dicePanel);
-
-    
-  // frame.add(panel);
-frame.add(adder, BorderLayout.CENTER);
-frame.setLocationRelativeTo(null);
-frame.setVisible(true);
-
+        
     }
 }
