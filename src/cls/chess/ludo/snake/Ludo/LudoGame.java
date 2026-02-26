@@ -4,7 +4,8 @@ import java.awt.*;
 import javax.swing.*;
 
 public class LudoGame extends JFrame {
-
+boolean dc=true;
+int value=0, game_State=3;
     private Dice dice = new Dice();   // ✅ Dice object class level এ
     private JLabel diceResult;  
     private GameState gameState;// Dice number দেখানোর জন্য
@@ -19,7 +20,7 @@ public class LudoGame extends JFrame {
         ImageIcon icon = signAddOnPanel.LudoIcon();
         setIconImage(icon.getImage());
 
-         gameState = new GameState(4);
+         gameState = new GameState(game_State);
         setupUI();   // UI setup আলাদা method এ
         setVisible(true);
     }
@@ -44,22 +45,101 @@ public class LudoGame extends JFrame {
 
         diceResult = new JLabel("INF");
         diceResult.setFont(new Font("Arial", Font.BOLD, 30));
+        
+        // BUTTON LISTENER
 
-        // 🎲 Dice Action
-        diceBtn.addActionListener(e -> {
-            int value = dice.roll();
-            diceResult.setText(String.valueOf(value));
-            System.out.println("Dice rolled: " + value);
-            
-             int current = gameState.getCurrentPlayer(); // int
-System.out.println("Current Player: " + PlayerColor.getName(current));
+       diceBtn.addActionListener(e -> {
+           if(dc)
+           {
+                int values = dice.roll();
+                diceResult.setText(String.valueOf(values));
+    System.out.println("Dice rolled: " + values);
+    value=values;
+   
+           }
+    
+        dc=false;
+    int current = gameState.getCurrentPlayer();
+    System.out.println("Current Player: " + PlayerColor.getName(current));
 
+    int pawnIndex = -1;
+String _Current=PlayerColor.getName(current);
+    switch (_Current) {
+    case "Green": {
+           ((LudoPanel) panel).movedPawn("Green",value);
+        pawnIndex = ((LudoPanel) panel).getSelectedGreenPawn();
+        break;
+    }
+    case "Red": {
+         ((LudoPanel) panel).movedPawn("Red",value);
+        pawnIndex = ((LudoPanel) panel).getSelectedRedPawn();
+        break;
+    }
+    case "Yellow": {
+         ((LudoPanel) panel).movedPawn("Yellow",value);
+        pawnIndex = ((LudoPanel) panel).getSelectedYellowPawn();
+        break;
+    }
+    case "Blue": {
+         ((LudoPanel) panel).movedPawn("Blue",value);
+        pawnIndex = ((LudoPanel) panel).getSelectedBluePawn();
+        break;
+    }
+    default: {
+        pawnIndex = -1; // optional
+        break;
+    }
+  }
+    // This is last part; 
+     if(dc)
+    {
+        if (value != 6) {
+        gameState.nextTurn();
+    } else {
+        System.out.println("Rolled 6! Extra turn.");
+    }
+    }else 
+    {
+          gameState.nextTurn();
+          dc=true;
+    }
+     
 
- gameState.nextTurn();  
+    if (pawnIndex == -1) {
+        System.out.println("Select a pawn first! Turn cannot proceed.");
+        return ;
+      
+       
+    }
 
-            
-        });
+    // Move the selected pawn
+    switch (current) {
+        case 0 -> {
+            ((LudoPanel) panel).moveGreenPawn(pawnIndex, value);
+            ((LudoPanel) panel).setSelectedGreenPawn(-1);
+        }
+        case 1 -> {
+            ((LudoPanel) panel).moveRedPawn(pawnIndex, value);
+            ((LudoPanel) panel).setSelectedRedPawn(-1);
+        }
+        case 2 -> {
+            ((LudoPanel) panel).moveYellowPawn(pawnIndex, value);
+            ((LudoPanel) panel).setSelectedYellowPawn(-1);
+        }
+        case 3 -> {
+            ((LudoPanel) panel).moveBluePawn(pawnIndex, value);
+            ((LudoPanel) panel).setSelectedBluePawn(-1);
+        }
+    }
 
+    // ✅ Turn management
+    
+    
+    
+});
+    
+       
+       
         dicePanel.add(diceBtn);
         dicePanel.add(diceResult);
 
