@@ -113,24 +113,24 @@ String _Current=PlayerColor.getName(current);
     }
 
     // Move the selected pawn
-    switch (current) {
-        case 0 -> {
-            ((LudoPanel) panel).moveGreenPawn(pawnIndex, value);
-            ((LudoPanel) panel).setSelectedGreenPawn(-1);
-        }
-        case 1 -> {
-            ((LudoPanel) panel).moveRedPawn(pawnIndex, value);
-            ((LudoPanel) panel).setSelectedRedPawn(-1);
-        }
-        case 2 -> {
-            ((LudoPanel) panel).moveYellowPawn(pawnIndex, value);
-            ((LudoPanel) panel).setSelectedYellowPawn(-1);
-        }
-        case 3 -> {
-            ((LudoPanel) panel).moveBluePawn(pawnIndex, value);
-            ((LudoPanel) panel).setSelectedBluePawn(-1);
-        }
-    }
+//    switch (current) {
+//        case 0 -> {
+//            ((LudoPanel) panel).moveGreenPawn(pawnIndex, value);
+//            ((LudoPanel) panel).setSelectedGreenPawn(-1);
+//        }
+//        case 1 -> {
+//            ((LudoPanel) panel).moveRedPawn(pawnIndex, value);
+//            ((LudoPanel) panel).setSelectedRedPawn(-1);
+//        }
+//        case 2 -> {
+//            ((LudoPanel) panel).moveYellowPawn(pawnIndex, value);
+//            ((LudoPanel) panel).setSelectedYellowPawn(-1);
+//        }
+//        case 3 -> {
+//            ((LudoPanel) panel).moveBluePawn(pawnIndex, value);
+//            ((LudoPanel) panel).setSelectedBluePawn(-1);
+//        }
+//    }
 
     // ✅ Turn management
     

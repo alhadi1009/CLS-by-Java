@@ -12,15 +12,16 @@ import java.util.ArrayList;
 
 public class LudoPanel extends JPanel {
 
-    JLayeredPane temp1, temp2;
+    JLayeredPane temp1 = null, temp2 = null;
 
     private Point[][] homePositions = new Point[4][4]; //NEW
 // Current steps of each pawn on their respective paths
     private int[] greenPawnStep = new int[4];   // Green pawns
     private int[] redPawnStep = new int[4];     // Red pawns
     private int[] yellowPawnStep = new int[4];  // Yellow pawns
-    private int[] bluePawnStep = new int[4];    // Blue pawns    
+    private int[] bluePawnStep = new int[4];    // Blue pawns 
 
+    private Point[] canMove = new Point[4];
     private ArrayList<JLayeredPane> greenPawns = new ArrayList<>();
     private ArrayList<JLayeredPane> redPawns = new ArrayList<>();
     private ArrayList<JLayeredPane> yellowPawns = new ArrayList<>();
@@ -31,6 +32,7 @@ public class LudoPanel extends JPanel {
     private int selectedRedPawn = -1;
     private int selectedYellowPawn = -1;
     private int selectedBluePawn = -1;
+    private int valueChange = 0;
 
     private int currentTurn = 0; // 0=green, 1=red, 2=yellow, 3=blue
 
@@ -80,7 +82,7 @@ public class LudoPanel extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
                 ArrayList<JLayeredPane> pawns = null;
-
+//System.out.println("Current Turn: " + currentTurn);
                 switch (currentTurn) {
                     case 0 ->
                         pawns = greenPawns;
@@ -112,6 +114,12 @@ public class LudoPanel extends JPanel {
                                 selectedBluePawn = i;
                         }
                         System.out.println("Selected pawn: " + i + " for player " + currentTurn);
+
+                        Point position = pawn.getLocation();
+
+                        System.out.println("X: " + position.x);
+                        System.out.println("Y: " + position.y);
+                        movingPawn(position.x, position.y);
                         break;
                     }
                 }
@@ -407,6 +415,7 @@ public class LudoPanel extends JPanel {
             yellowPawnStep[pawnIndex] = BoardPaths.TOTAL_STEPS - 1;
         }
         Point p = BoardPaths.yellowPath[yellowPawnStep[pawnIndex]];
+
         yellowPawns.get(pawnIndex).setLocation(p.x, p.y);
         repaint();
     }
@@ -459,6 +468,7 @@ public class LudoPanel extends JPanel {
     }
 
     public void movedPawn(String player, int value) {
+        valueChange = value;
         ArrayList<JLayeredPane> pawns = null;
         int[] steps = null;
         Point[] path = null;
@@ -502,10 +512,12 @@ public class LudoPanel extends JPanel {
         for (int i = 0; i < pawns.size(); i++) {
             // যদি pawn home এ থাকে (-1) এবং dice 6 আসে
             JLayeredPane oldPawn = pawns.get(i);
+
             if (steps[i] == -1 && value == 6) {
                 Point pt = homePositions[playerIndex][i];
                 System.out.print(homePositions[playerIndex][i]);
 
+                canMove[i] = new Point(pt.x, pt.y);
                 temp2 = oldPawn;
                 //pawns.get(i).setLocation(pt.x, pt.y);
                 switch (playerIndex) {
@@ -532,7 +544,8 @@ public class LudoPanel extends JPanel {
 //                steps[i] += value;               // <-- step update
                 Point pt = path[steps[i]];       // <-- updated position
 
-                temp2 = oldPawn;
+                canMove[i] = new Point(pt.x, pt.y);
+
 
                 switch (playerIndex) {
                     case 0 ->
@@ -548,15 +561,141 @@ public class LudoPanel extends JPanel {
                 }
                 System.out.print(pt.x + "  " + pt.y);
                 //  temp1.setBounds(pt.x, pt.y, 40, 40);          // <-- ensure bounds
-                if (oldPawn != null) {
-                    this.remove(oldPawn);   // remove old first
-                }
+//                if (oldPawn != null) {
+//                    this.remove(oldPawn);   // remove old first
+//                }
                 this.add(temp1, JLayeredPane.PALETTE_LAYER); // add new in proper layer
                 pawns.set(i, temp1);                         // update ArrayList
 
                 repaint();
             }
         }
+    }
+
+    public void movingPawn(int valX, int valY) {
+        if (temp1 != null) {
+            for (int i = 0; i < 4; i++) {
+                if (canMove[i] != null
+                        && canMove[i].x == valX
+                        && canMove[i].y == valY) {
+                    Point sub = new Point(canMove[i].x, canMove[i].y);
+                    int finalStep = BoardPaths.successMove(sub, valueChange, currentTurn);
+                    switch (currentTurn) {
+                        case 0 ->
+                            greenPawnStep[i] = finalStep;
+                        case 1 ->
+                            redPawnStep[i] = finalStep;
+                        case 2 ->
+                            yellowPawnStep[i] = finalStep;
+                        case 3 ->
+                            bluePawnStep[i] = finalStep;
+                    }
+                    System.out.println(greenPawnStep[i]);
+
+                    // Move pawn visually
+                    Point pt = switch (currentTurn) {
+                        case 0 ->
+                            BoardPaths.greenPath[finalStep];
+                        case 1 ->
+                            BoardPaths.redPath[finalStep];
+                        case 2 ->
+                            BoardPaths.yellowPath[finalStep];
+                        case 3 ->
+                            BoardPaths.bluePath[finalStep];
+                        default ->
+                            null;
+                    };
+// CALL AGAIN function;
+                    switch (currentTurn) {
+                        case 0 ->
+                            Again(greenPawns, i, BoardPaths.greenPath[finalStep],0);
+                        case 1 ->
+                            Again(redPawns, i, BoardPaths.redPath[finalStep],1);
+                        case 2 ->
+                            Again(yellowPawns, i, BoardPaths.yellowPath[finalStep],2);
+                        case 3 ->
+                            Again(bluePawns, i, BoardPaths.bluePath[finalStep],3);
+
+                    }
+//                    if (pt != null) {
+//                        temp1.setLocation(pt.x, pt.y);
+//                    }
+
+                    repaint();
+
+//                   if(currentTurn==0)
+//                   {
+//                       greenPawnStep[i]=finalStep;
+//                   }else if(currentTurn==1)
+//                   {
+//                        redPawnStep[i]=finalStep;
+//                   }else if(currentTurn==2)
+//                   {
+//                       yellowPawnStep[i]=finalStep; 
+//                   }else 
+//                   {
+//                      bluePawnStep[i]=finalStep;  
+//                   }
+                    break;
+                }
+
+            }
+        }
+    }
+
+    public void Again(ArrayList<JLayeredPane> pawns, int vfx, Point ptt,int check) {
+        if (temp2 != null) {
+            System.out.println("HI Hadi." + vfx + "  " + ptt.x + " " + ptt.y);
+
+        }
+       
+        for (int i = 0; i < 4; i++) {
+                        JLayeredPane oldPawn = pawns.get(i);
+
+            if(i!=vfx)
+            {
+              Point pt=pawns.get(i).getLocation();
+             switch(check){
+                    case 0 ->
+                        temp1 = PawnLocation.addPawnGreenCircle(pt.x, pt.y);
+                    case 1 ->
+                        temp1 = PawnLocation.addPawnRedCircle(pt.x, pt.y);
+                    case 2 ->
+                        temp1 = PawnLocation.addPawnYellowCircle(pt.x, pt.y);
+                    case 3 ->
+                        temp1 = PawnLocation.addPawnBlueCircle(pt.x, pt.y);
+                    default ->
+                        throw new IllegalStateException("Unexpected value: " + check);
+                }   
+            }else 
+            {
+                switch(check){
+                    case 0 ->
+                        temp1 = PawnLocation.addPawnGreenCircle(ptt.x, ptt.y);
+                    case 1 ->
+                        temp1 = PawnLocation.addPawnRedCircle(ptt.x, ptt.y);
+                    case 2 ->
+                        temp1 = PawnLocation.addPawnYellowCircle(ptt.x, ptt.y);
+                    case 3 ->
+                        temp1 = PawnLocation.addPawnBlueCircle(ptt.x, ptt.y);
+                    default ->
+                        throw new IllegalStateException("Unexpected value: " + check);
+                }   
+            }
+            try{
+                 Thread.sleep(50);
+            }catch (InterruptedException e) {
+    e.printStackTrace();
+}
+             this.remove(oldPawn);
+                this.add(temp1);
+                pawns.set(i, temp1);
+                repaint();
+           
+            
+
+        }
+        repaint();
     }
 
 }
