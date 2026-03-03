@@ -91,18 +91,19 @@ String _Current=PlayerColor.getName(current);
     }
   }
     // This is last part; 
-     if(dc)
-    {
+//     if(dc)
+//    {
         if (value != 6) {
         gameState.nextTurn();
-    } else {
+    }
+        else {
         System.out.println("Rolled 6! Extra turn.");
     }
-    }else 
-    {
-          gameState.nextTurn();
-          dc=true;
-    }
+//    }else 
+//    {
+//          gameState.nextTurn();
+//          dc=true;
+//    }
      
 
     if (pawnIndex == -1) {

@@ -20,13 +20,13 @@ public class BoardPaths {
 
     private static void setupGreenPath() {
         // Fill greenPath[0..55] with coordinates
-        greenPath[0] = new Point(70, 80);    // home 1
-        greenPath[1] = new Point(450, 35);   // home 2
-        greenPath[2] = new Point(105 + 30, 35); // 1st board cell (135,35)
-        greenPath[3] = new Point(165, 35);
-        greenPath[4] = new Point(195, 35);
-        greenPath[5] = new Point(225, 35);
-        greenPath[6] = new Point(255, 35);
+        greenPath[0] = new Point(30, 170);    // home 1
+        greenPath[1] = new Point(60,170);   // home 2
+        greenPath[2] = new Point(90,170); // 1st board cell (135,35)
+        greenPath[3] = new Point(120, 170);
+        greenPath[4] = new Point(150, 170);
+        greenPath[5] = new Point(180, 140);
+        greenPath[6] = new Point(180, 110);
         greenPath[7] = new Point(285, 35);
         greenPath[8] = new Point(315, 35);
         greenPath[9] = new Point(345, 35);
