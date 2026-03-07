@@ -4,18 +4,12 @@
  */
 package cls.chess.ludo.snake.Ludo;
 
-import java.util.Random;
-
 /**
  *
  * @author Al Hadi
  */
-public class Dice {
-    private Random random = new Random();
-
-    public int roll() {
-        return random.nextInt(6) + 1;
-        //return 6;
-    }
+public class GameControl {
+    public static boolean change=true;
+    public static int mode=-1;
     
 }

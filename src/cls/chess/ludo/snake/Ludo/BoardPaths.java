@@ -277,6 +277,37 @@ bluePath[56] = new Point(210,200);
             else return index+val;
            
         }
+       else if(curTurn==1)
+        {
+            int index=findPointIndex(BoardPaths.redPath, x);
+             for (int i = index; i <= val; i++) {
+
+            }
+            if(index==-1)return 0;
+            else return index+val;
+        }
+       else if(curTurn==2)
+       {
+            int index=findPointIndex(BoardPaths.yellowPath, x);
+             for (int i = index; i <= val; i++) {
+
+            }
+            if(index==-1)return 0;
+            else return index+val;
+       }
+       else if(curTurn==3)
+       {
+            int index=findPointIndex(BoardPaths.bluePath, x);
+             for (int i = index; i <= val; i++) {
+
+            }
+            if(index==-1)return 0;
+            else return index+val;
+       }
+       else {
+           System.out.println("Big Error ;");
+       }
+        
        return -1;
     }
 

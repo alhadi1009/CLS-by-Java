@@ -83,6 +83,7 @@ public class LudoPanel extends JPanel {
             public void mousePressed(MouseEvent e) {
                 ArrayList<JLayeredPane> pawns = null;
 //System.out.println("Current Turn: " + currentTurn);
+ currentTurn=GameControl.mode;
                 switch (currentTurn) {
                     case 0 ->
                         pawns = greenPawns;
@@ -103,6 +104,7 @@ public class LudoPanel extends JPanel {
                     Rectangle bounds = SwingUtilities.convertRectangle(pawn.getParent(), pawn.getBounds(), LudoPanel.this);
                     if (bounds.contains(click)) {
                         // selected pawn set korbo turn-er hisabe
+                       
                         switch (currentTurn) {
                             case 0 ->
                                 selectedGreenPawn = i;
@@ -119,7 +121,12 @@ public class LudoPanel extends JPanel {
 
                         System.out.println("X: " + position.x);
                         System.out.println("Y: " + position.y);
+                        
+                        if( ! GameControl.change)
+                        { 
                         movingPawn(position.x, position.y);
+                        
+                        }
                         break;
                     }
                 }
@@ -467,7 +474,7 @@ public class LudoPanel extends JPanel {
         this.selectedBluePawn = index;
     }
 
-    public void movedPawn(String player, int value) {
+    public int movedPawn(String player, int value) {
         valueChange = value;
         ArrayList<JLayeredPane> pawns = null;
         int[] steps = null;
@@ -500,7 +507,7 @@ public class LudoPanel extends JPanel {
                 playerIndex = 3;
             }
             default -> {
-                return;
+                return 0;
             }
         }
 
@@ -509,6 +516,7 @@ public class LudoPanel extends JPanel {
 //        }
 //        steps[0] = 1;
 //        
+int count=0;
         for (int i = 0; i < pawns.size(); i++) {
             // যদি pawn home এ থাকে (-1) এবং dice 6 আসে
       JLayeredPane oldPawn = pawns.get(i);
@@ -518,6 +526,7 @@ public class LudoPanel extends JPanel {
                 System.out.print(homePositions[playerIndex][i]);
 
                 canMove[i] = new Point(pt.x, pt.y);
+                count++;
            temp2 = oldPawn;
          pawns.get(i).setLocation(pt.x, pt.y);
                 switch (playerIndex) {
@@ -546,6 +555,7 @@ public class LudoPanel extends JPanel {
                 Point pt = path[steps[i]];       // <-- updated position
          System.out.println("Hi1"+ steps[i]+" ");
                 canMove[i] = new Point(pt.x, pt.y);
+                count++;
    
                   temp2 = oldPawn;
          pawns.get(i).setLocation(pt.x, pt.y);
@@ -575,16 +585,20 @@ public class LudoPanel extends JPanel {
                 repaint();
             }
         }
+        return count;
     }
 
     public void movingPawn(int valX, int valY) {
         if (temp1 != null) {
+            int cnt0=-1;
             for (int i = 0; i < 4; i++) {
                 if (canMove[i] != null
                         && canMove[i].x == valX
                         && canMove[i].y == valY) {
+                    cnt0=1;
                     Point sub = new Point(canMove[i].x, canMove[i].y);
                     int finalStep = BoardPaths.successMove(sub, valueChange, currentTurn);
+                    System.out.println("final steps:"+finalStep);
                     switch (currentTurn) {
                         case 0 ->
                             greenPawnStep[i] = finalStep;
@@ -595,7 +609,7 @@ public class LudoPanel extends JPanel {
                         case 3 ->
                             bluePawnStep[i] = finalStep;
                     }
-                    System.out.println("Hello :" + greenPawnStep[i]);
+                  //  System.out.println("Hello :" + greenPawnStep[i]);
 
                     // Move pawn visually
 //                    Point pt = switch (currentTurn) {
@@ -625,7 +639,6 @@ public class LudoPanel extends JPanel {
 //                    if (pt != null) {
 //                        temp1.setLocation(pt.x, pt.y);
 //                    }
-
                     repaint();
 
 //                   if(currentTurn==0)
@@ -645,15 +658,25 @@ public class LudoPanel extends JPanel {
                 }
 
             }
+            if(cnt0==1)
+            {
+                          for(int i=0;i<4;i++)canMove[i]=null;
+                          System.out.println("all null");
+  
+            }
+
         }
     }
 
     public void Again(ArrayList<JLayeredPane> pawns, int vfx, Point ptt, int check) {
-        if (temp2 != null) {
-            System.out.println("HI Hadi." + vfx + "  " + ptt.x + " " + ptt.y);
-
-        }
-
+       
+              try {
+    System.out.println("checking " + ptt.x + " and " + ptt.y);
+} 
+catch (Exception e) {
+    System.out.println("Error while printing point");
+    e.printStackTrace();
+}
         for (int i = 0; i < 4; i++) {
             //JLayeredPane oldPawn = pawns.get(i);
             JLayeredPane temp1;
