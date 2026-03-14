@@ -33,6 +33,7 @@ public class LudoPanel extends JPanel {
     private int selectedYellowPawn = -1;
     private int selectedBluePawn = -1;
     private int valueChange = 0;
+    private boolean Chank=false;
 
     private int currentTurn = 0; // 0=green, 1=red, 2=yellow, 3=blue
 
@@ -123,8 +124,12 @@ public class LudoPanel extends JPanel {
                         System.out.println("Y: " + position.y);
                         
                         if( ! GameControl.change)
-                        { 
+                        { Chank=false;
                         movingPawn(position.x, position.y);
+                        if(Chank)
+                        GameControl.change=true;
+                        
+                        
                         
                         }
                         break;
@@ -595,6 +600,7 @@ int count=0;
                 if (canMove[i] != null
                         && canMove[i].x == valX
                         && canMove[i].y == valY) {
+                    Chank=true;
                     cnt0=1;
                     Point sub = new Point(canMove[i].x, canMove[i].y);
                     int finalStep = BoardPaths.successMove(sub, valueChange, currentTurn);
