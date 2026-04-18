@@ -6,10 +6,10 @@ import javax.swing.*;
 public class LudoGame extends JFrame {
 
     boolean dc = true;
-    int value = 0, game_State = 3;
-    private Dice dice = new Dice();   // ✅ Dice object class level এ
+    int value = 0, game_State = 4;
+    private Dice dice = new Dice();   
     private JLabel diceResult;
-    private GameState gameState;// Dice number দেখানোর জন্য
+    private GameState gameState;
 
     public LudoGame() {
 

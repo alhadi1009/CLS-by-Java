@@ -128,9 +128,6 @@ public class LudoPanel extends JPanel {
                         movingPawn(position.x, position.y);
                         if(Chank)
                         GameControl.change=true;
-                        
-                        
-                        
                         }
                         break;
                     }
@@ -146,7 +143,8 @@ public class LudoPanel extends JPanel {
             Point p = homePositions[0][i];
             JLayeredPane pawn = PawnLocation.addPawnGreenCircle(p.x, p.y);
             greenPawns.add(pawn);        // store in ArrayList
-            this.add(pawn);              // add to panel
+            this.add(pawn); 
+            this.setComponentZOrder(pawn, 0);// add to panel
         }
     }
 
@@ -158,7 +156,8 @@ public class LudoPanel extends JPanel {
 
             JLayeredPane pawn = PawnLocation.addPawnRedCircle(p.x, p.y);
             redPawns.add(pawn);        // store in ArrayList
-            this.add(pawn);             // add to panel
+            this.add(pawn);
+            this.setComponentZOrder(pawn, 0);// add to panel
         }
     }
 
@@ -170,6 +169,7 @@ public class LudoPanel extends JPanel {
             JLayeredPane pawn = PawnLocation.addPawnYellowCircle(p.x, p.y);
             yellowPawns.add(pawn);
             this.add(pawn);
+            this.setComponentZOrder(pawn, 0);
         }
     }
 
@@ -179,7 +179,8 @@ public class LudoPanel extends JPanel {
             Point p = homePositions[3][i];
             JLayeredPane pawn = PawnLocation.addPawnBlueCircle(p.x, p.y);
             bluePawns.add(pawn);        // store in ArrayList
-            this.add(pawn);             // add to panel
+            this.add(pawn); 
+this.setComponentZOrder(pawn, 0);            // add to panel
         }
 
     }
@@ -548,7 +549,9 @@ int count=0;
                 }
                 this.remove(oldPawn);
                 //this.add(temp1, JLayeredPane.PALETTE_LAYER);
+                
                 this.add(temp1);
+                this.setComponentZOrder(temp1, 0);
                 pawns.set(i, temp1);
                 // AD action listener ; 
                 // steps[i] = 0; // board এ প্রবেশ
@@ -585,6 +588,7 @@ int count=0;
                this.remove(oldPawn);
                 //this.add(temp1, JLayeredPane.PALETTE_LAYER);
                 this.add(temp1);
+                this.setComponentZOrder(temp1, 0);
                 pawns.set(i, temp1);                       // update ArrayList
 
                 repaint();
@@ -731,6 +735,7 @@ catch (Exception e) {
             }
             this.remove(pawns.get(i));
             this.add(temp1);
+            this.setComponentZOrder(temp1, 0);
             pawns.set(i, temp1);
             repaint();
 

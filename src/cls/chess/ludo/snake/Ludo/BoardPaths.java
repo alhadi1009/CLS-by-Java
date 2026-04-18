@@ -290,7 +290,7 @@ bluePath[56] = new Point(210,200);
        {
             int index=findPointIndex(BoardPaths.yellowPath, x);
              for (int i = index; i <= val; i++) {
-
+// here add something;;
             }
             if(index==-1)return 0;
             else return index+val;
