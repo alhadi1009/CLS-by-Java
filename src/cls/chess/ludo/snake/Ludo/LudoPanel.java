@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class LudoPanel extends JPanel {
 
@@ -33,7 +34,7 @@ public class LudoPanel extends JPanel {
     private int selectedYellowPawn = -1;
     private int selectedBluePawn = -1;
     private int valueChange = 0;
-    private boolean Chank=false;
+    private boolean Chank = false;
 
     private int currentTurn = 0; // 0=green, 1=red, 2=yellow, 3=blue
 
@@ -84,7 +85,7 @@ public class LudoPanel extends JPanel {
             public void mousePressed(MouseEvent e) {
                 ArrayList<JLayeredPane> pawns = null;
 //System.out.println("Current Turn: " + currentTurn);
- currentTurn=GameControl.mode;
+                currentTurn = GameControl.mode;
                 switch (currentTurn) {
                     case 0 ->
                         pawns = greenPawns;
@@ -105,7 +106,7 @@ public class LudoPanel extends JPanel {
                     Rectangle bounds = SwingUtilities.convertRectangle(pawn.getParent(), pawn.getBounds(), LudoPanel.this);
                     if (bounds.contains(click)) {
                         // selected pawn set korbo turn-er hisabe
-                       
+
                         switch (currentTurn) {
                             case 0 ->
                                 selectedGreenPawn = i;
@@ -122,12 +123,13 @@ public class LudoPanel extends JPanel {
 
                         System.out.println("X: " + position.x);
                         System.out.println("Y: " + position.y);
-                        
-                        if( ! GameControl.change)
-                        { Chank=false;
-                        movingPawn(position.x, position.y);
-                        if(Chank)
-                        GameControl.change=true;
+
+                        if (!GameControl.change) {
+                            Chank = false;
+                            movingPawn(position.x, position.y);
+                            if (Chank) {
+                                GameControl.change = true;
+                            }
                         }
                         break;
                     }
@@ -143,7 +145,7 @@ public class LudoPanel extends JPanel {
             Point p = homePositions[0][i];
             JLayeredPane pawn = PawnLocation.addPawnGreenCircle(p.x, p.y);
             greenPawns.add(pawn);        // store in ArrayList
-            this.add(pawn); 
+            this.add(pawn);
             this.setComponentZOrder(pawn, 0);// add to panel
         }
     }
@@ -179,8 +181,8 @@ public class LudoPanel extends JPanel {
             Point p = homePositions[3][i];
             JLayeredPane pawn = PawnLocation.addPawnBlueCircle(p.x, p.y);
             bluePawns.add(pawn);        // store in ArrayList
-            this.add(pawn); 
-this.setComponentZOrder(pawn, 0);            // add to panel
+            this.add(pawn);
+            this.setComponentZOrder(pawn, 0);            // add to panel
         }
 
     }
@@ -522,10 +524,10 @@ this.setComponentZOrder(pawn, 0);            // add to panel
 //        }
 //        steps[0] = 1;
 //        
-int count=0;
+        int count = 0;
         for (int i = 0; i < pawns.size(); i++) {
             // যদি pawn home এ থাকে (-1) এবং dice 6 আসে
-      JLayeredPane oldPawn = pawns.get(i);
+            JLayeredPane oldPawn = pawns.get(i);
 
             if (steps[i] == -1 && value == 6) {
                 Point pt = homePositions[playerIndex][i];
@@ -533,8 +535,8 @@ int count=0;
 
                 canMove[i] = new Point(pt.x, pt.y);
                 count++;
-           temp2 = oldPawn;
-         pawns.get(i).setLocation(pt.x, pt.y);
+                temp2 = oldPawn;
+                pawns.get(i).setLocation(pt.x, pt.y);
                 switch (playerIndex) {
                     case 0 ->
                         temp1 = ChangeDice.addPawnGreenCircle(pt.x, pt.y);
@@ -549,7 +551,7 @@ int count=0;
                 }
                 this.remove(oldPawn);
                 //this.add(temp1, JLayeredPane.PALETTE_LAYER);
-                
+
                 this.add(temp1);
                 this.setComponentZOrder(temp1, 0);
                 pawns.set(i, temp1);
@@ -561,13 +563,13 @@ int count=0;
             if (steps[i] != -1 && steps[i] + value < BoardPaths.TOTAL_STEPS) {
 //                steps[i] += value;               // <-- step update
                 Point pt = path[steps[i]];       // <-- updated position
-         System.out.println("Hi1"+ steps[i]+" ");
+                System.out.println("Hi1" + steps[i] + " ");
                 canMove[i] = new Point(pt.x, pt.y);
                 count++;
-   
-                  temp2 = oldPawn;
-         pawns.get(i).setLocation(pt.x, pt.y);
-                
+
+                temp2 = oldPawn;
+                pawns.get(i).setLocation(pt.x, pt.y);
+
                 switch (playerIndex) {
                     case 0 ->
                         temp1 = ChangeDice.addPawnGreenCircle(pt.x, pt.y);
@@ -585,7 +587,7 @@ int count=0;
 //                if (oldPawn != null) {
 //                    this.remove(oldPawn);   // remove old first
 //                }
-               this.remove(oldPawn);
+                this.remove(oldPawn);
                 //this.add(temp1, JLayeredPane.PALETTE_LAYER);
                 this.add(temp1);
                 this.setComponentZOrder(temp1, 0);
@@ -599,16 +601,16 @@ int count=0;
 
     public void movingPawn(int valX, int valY) {
         if (temp1 != null) {
-            int cnt0=-1;
+            int cnt0 = -1;
             for (int i = 0; i < 4; i++) {
                 if (canMove[i] != null
                         && canMove[i].x == valX
                         && canMove[i].y == valY) {
-                    Chank=true;
-                    cnt0=1;
+                    Chank = true;
+                    cnt0 = 1;
                     Point sub = new Point(canMove[i].x, canMove[i].y);
-                    int finalStep = BoardPaths.successMove(sub, valueChange, currentTurn);
-                    System.out.println("final steps:"+finalStep);
+                    int finalStep = BoardPaths.successMove(sub, valueChange, currentTurn);// Cal SuccessMove
+                    System.out.println("final steps:" + finalStep);
                     switch (currentTurn) {
                         case 0 ->
                             greenPawnStep[i] = finalStep;
@@ -619,21 +621,7 @@ int count=0;
                         case 3 ->
                             bluePawnStep[i] = finalStep;
                     }
-                  //  System.out.println("Hello :" + greenPawnStep[i]);
 
-                    // Move pawn visually
-//                    Point pt = switch (currentTurn) {
-//                        case 0 ->
-//                            BoardPaths.greenPath[finalStep];
-//                        case 1 ->
-//                            BoardPaths.redPath[finalStep];
-//                        case 2 ->
-//                            BoardPaths.yellowPath[finalStep];
-//                        case 3 ->
-//                            BoardPaths.bluePath[finalStep];
-//                        default ->
-//                            null;
-//                    };
 // CALL AGAIN function;
                     switch (currentTurn) {
                         case 0 ->
@@ -668,25 +656,25 @@ int count=0;
                 }
 
             }
-            if(cnt0==1)
-            {
-                          for(int i=0;i<4;i++)canMove[i]=null;
-                          System.out.println("all null");
-  
+            if (cnt0 == 1) {
+                for (int i = 0; i < 4; i++) {
+                    canMove[i] = null;
+                }
+                System.out.println("all null");
+
             }
 
         }
     }
 
     public void Again(ArrayList<JLayeredPane> pawns, int vfx, Point ptt, int check) {
-       
-              try {
-    System.out.println("checking " + ptt.x + " and " + ptt.y);
-} 
-catch (Exception e) {
-    System.out.println("Error while printing point");
-    e.printStackTrace();
-}
+
+        try {
+            System.out.println("checking " + ptt.x + " and " + ptt.y);
+        } catch (Exception e) {
+            System.out.println("Error while printing point");
+            e.printStackTrace();
+        }
         for (int i = 0; i < 4; i++) {
             //JLayeredPane oldPawn = pawns.get(i);
             JLayeredPane temp1;
@@ -707,6 +695,7 @@ catch (Exception e) {
                     default ->
                         throw new IllegalStateException("Unexpected value: " + check);
                 }
+                // akan theke
             } else {
                 Container parent = oldPawn.getParent();
 
@@ -715,24 +704,156 @@ catch (Exception e) {
                     parent.revalidate();
                     parent.repaint();
                 }
+
                 switch (check) {
-                    case 0 ->
-                        temp1 = PawnLocation.addPawnGreenCircle(ptt.x, ptt.y);
-                    case 1 ->
-                        temp1 = PawnLocation.addPawnRedCircle(ptt.x, ptt.y);
-                    case 2 ->
-                        temp1 = PawnLocation.addPawnYellowCircle(ptt.x, ptt.y);
-                    case 3 ->
-                        temp1 = PawnLocation.addPawnBlueCircle(ptt.x, ptt.y);
-                    default ->
+                    case 0 -> {
+                        Point pt = pawns.get(i).getLocation();
+                        int Previous = BoardPaths.findPointIndex(BoardPaths.greenPath, pt);
+                        System.out.println("BEFORE + " + pawns.get(i).getLocation() + "  " + Previous);
+                        int Present = BoardPaths.findPointIndex(BoardPaths.greenPath, ptt);
+                        temp1 = PawnLocation.addPawnGreenCircle(pt.x, pt.y);
+                        if (Previous != -1) {
+                            final JLayeredPane temp = temp1;
+
+                            Timer timer = new Timer(200, null);
+                            final int[] j = {Previous};
+
+                            timer.addActionListener(e -> {
+
+                                if (j[0] >= Present) {
+                                    timer.stop();
+                                    return;
+                                }
+
+                                j[0]++; // move first
+
+                                Point p = BoardPaths.greenPath[j[0]];
+                                temp.setLocation(p.x, p.y);
+
+                                repaint();
+                            });
+
+                            timer.start();
+                            //temp1.setLocation(ptt.x,ptt.y);
+
+                        } else {
+                            temp1 = PawnLocation.addPawnGreenCircle(ptt.x, ptt.y);
+
+                        }
+
+                        System.out.println("AFTER +" + ptt + " " + Present);
+                    }
+                    case 1 -> {
+
+                        Point pt = pawns.get(i).getLocation();
+                        int Previous = BoardPaths.findPointIndex(BoardPaths.redPath, pt);
+                        int Present = BoardPaths.findPointIndex(BoardPaths.redPath, ptt);
+                        temp1 = PawnLocation.addPawnRedCircle(pt.x, pt.y);
+
+                        if (Previous != -1) {
+                            final JLayeredPane temp = temp1;
+
+                            Timer timer = new Timer(200, null);
+                            final int[] j = {Previous};
+
+                            timer.addActionListener(e -> {
+
+                                if (j[0] >= Present) {
+                                    timer.stop();
+                                    return;
+                                }
+
+                                j[0]++; // move first
+
+                                Point p = BoardPaths.redPath[j[0]];
+                                temp.setLocation(p.x, p.y);
+
+                                repaint();
+                            });
+
+                            timer.start();
+
+                        } else {
+                            temp1 = PawnLocation.addPawnRedCircle(ptt.x, ptt.y);
+
+                        }
+                    }
+                    case 2 -> {
+                        Point pt = pawns.get(i).getLocation();
+                        int Previous = BoardPaths.findPointIndex(BoardPaths.yellowPath, pt);
+                        int Present = BoardPaths.findPointIndex(BoardPaths.yellowPath, ptt);
+                        System.out.println("BEFORE + " + pawns.get(i).getLocation());
+                        temp1 = PawnLocation.addPawnYellowCircle(pt.x, pt.y);
+                        if (Previous != -1) {
+                            final JLayeredPane temp = temp1;
+
+                            Timer timer = new Timer(200, null);
+                            final int[] j = {Previous};
+
+                            timer.addActionListener(e -> {
+
+                                if (j[0] >= Present) {
+                                    timer.stop();
+                                    return;
+                                }
+
+                                j[0]++; // move first
+
+                                Point p = BoardPaths.yellowPath[j[0]];
+                                temp.setLocation(p.x, p.y);
+
+                                repaint();
+                            });
+
+                            timer.start();
+
+                        } else {
+                            temp1 = PawnLocation.addPawnYellowCircle(ptt.x, ptt.y);
+
+                        }
+
+                    }
+                    case 3 -> {
+                         Point pt = pawns.get(i).getLocation();
+                        int Previous = BoardPaths.findPointIndex(BoardPaths.bluePath, pt);
+                        int Present = BoardPaths.findPointIndex(BoardPaths.bluePath, ptt);
+                        
+                        
+                        temp1 = PawnLocation.addPawnBlueCircle(pt.x, pt.y);
+                         if (Previous != -1) {
+                            final JLayeredPane temp = temp1;
+
+                            Timer timer = new Timer(200, null);
+                            final int[] j = {Previous};
+
+                            timer.addActionListener(e -> {
+
+                                if (j[0] >= Present) {
+                                    timer.stop();
+                                    return;
+                                }
+
+                                j[0]++; // move first
+
+                                Point p = BoardPaths.bluePath[j[0]];
+                                temp.setLocation(p.x, p.y);
+
+                                repaint();
+                            });
+
+                            timer.start();
+
+                        } else {
+                        temp1 = PawnLocation.addPawnBlueCircle(pt.x, pt.y);
+
+                        }
+                    }
+                    default -> {
                         throw new IllegalStateException("Unexpected value: " + check);
+                    }
                 }
             }
-            try {
-                Thread.sleep(50);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+
             this.remove(pawns.get(i));
             this.add(temp1);
             this.setComponentZOrder(temp1, 0);
@@ -742,6 +863,5 @@ catch (Exception e) {
         }
         repaint();
     }
-    
-   
+
 }

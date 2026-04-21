@@ -1,5 +1,6 @@
 package cls.chess.ludo.snake.Ludo;
-
+  import javax.swing.*;
+import java.util.function.Consumer;
 import java.awt.Point;
 
 public class BoardPaths {
@@ -269,40 +270,48 @@ bluePath[56] = new Point(210,200);
     public static int successMove(Point x, int val, int curTurn) {
         if (curTurn == 0) {
             int index = findPointIndex(BoardPaths.greenPath, x);
+             if(index==-1)return 0;
             System.out.println(index+ " Hello World!");
             for (int i = index; i <= val; i++) {
+System.out.println("hello0)");
 
             }
-            if(index==-1)return 0;
-            else return index+val;
+           
+             return index+val;
            
         }
        else if(curTurn==1)
         {
             int index=findPointIndex(BoardPaths.redPath, x);
+             if(index==-1)return 0;
              for (int i = index; i <= val; i++) {
+System.out.println("hello1");
 
             }
-            if(index==-1)return 0;
-            else return index+val;
+           
+           return index+val;
         }
        else if(curTurn==2)
        {
             int index=findPointIndex(BoardPaths.yellowPath, x);
+            if(index==-1)return 0;
+           
              for (int i = index; i <= val; i++) {
 // here add something;;
+System.out.println("hello2");
+
             }
-            if(index==-1)return 0;
-            else return index+val;
+             return index+val;
        }
        else if(curTurn==3)
        {
             int index=findPointIndex(BoardPaths.bluePath, x);
-             for (int i = index; i <= val; i++) {
-
-            }
             if(index==-1)return 0;
-            else return index+val;
+            
+             for (int i = index; i <= val; i++) {
+System.out.println("hello3");
+            }
+             return index+val;
        }
        else {
            System.out.println("Big Error ;");
@@ -319,4 +328,29 @@ bluePath[56] = new Point(210,200);
         }
         return -1;
     }
+    
+    
+  
+
+public void animatePawnMove(int from, int to, Consumer<Integer> onComplete) {
+
+    Timer timer = new Timer(200, null); // animation speed
+
+    final int[] current = {from};
+
+    timer.addActionListener(e -> {
+        if (current[0] < to) {
+            current[0]++;                      // move one step forward
+           // updatePawnPosition(current[0]);    // update board position
+           // repaint();                         // redraw UI
+        } else {
+            timer.stop();
+            if (onComplete != null) {
+                onComplete.accept(current[0]); // final position
+            }
+        }
+    });
+
+    timer.start();
+}
 }

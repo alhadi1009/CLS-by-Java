@@ -6,7 +6,7 @@ import javax.swing.*;
 public class LudoGame extends JFrame {
 
     boolean dc = true;
-    int value = 0, game_State = 4;
+    int value = 0, game_State = 2;
     private Dice dice = new Dice();   
     private JLabel diceResult;
     private GameState gameState;
