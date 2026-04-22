@@ -11,5 +11,6 @@ package cls.chess.ludo.snake.Ludo;
 public class GameControl {
     public static boolean change=true;
     public static int mode=-1;
+    public static boolean Turn=true;
     
 }

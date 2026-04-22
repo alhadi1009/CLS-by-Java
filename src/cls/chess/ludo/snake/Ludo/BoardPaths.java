@@ -11,12 +11,26 @@ public class BoardPaths {
     public static Point[] redPath = new Point[TOTAL_STEPS];
     public static Point[] yellowPath = new Point[TOTAL_STEPS];
     public static Point[] bluePath = new Point[TOTAL_STEPS];
+    public static Point[] SafePath  = new Point[8];
 
     static {
         setupGreenPath();
         setupRedPath();
         setupYellowPath();
         setupBluePath();
+        setupsafePath();
+    }
+    private static void setupsafePath()
+    {
+        SafePath[0]= new Point(30,170);
+        SafePath[1]= new Point(180,50);
+         SafePath[2]= new Point(240,20);
+        SafePath[3]= new Point(360,170);
+        SafePath[4]= new Point(390,230);
+        SafePath[5]= new Point(240,350);
+        SafePath[6]= new Point(180,380);
+        SafePath[7]= new Point(60,230);
+       
     }
 
     private static void setupGreenPath() {

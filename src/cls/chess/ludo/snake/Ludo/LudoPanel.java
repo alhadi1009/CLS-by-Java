@@ -358,22 +358,6 @@ public class LudoPanel extends JPanel {
         }
 
     }
-//    public JLayeredPane getGreenPawn(int index) {
-//        if (index < 0 || index >= greenPawns.size()) return null;
-//        return greenPawns.get(index);
-//    }
-//    public JLayeredPane getRedPawn(int index) {
-//        if (index < 0 || index >= redPawns.size()) return null;
-//        return redPawns.get(index);
-//    }
-//    public JLayeredPane getYellowPawn(int index) {
-//        if (index < 0 || index >= yellowPawns.size()) return null;
-//        return yellowPawns.get(index);
-//    }
-//    public JLayeredPane getBluePawn(int index) {
-//        if (index < 0 || index >= bluePawns.size()) return null;
-//        return bluePawns.get(index);
-//    }
 
     private void setupHomePositions() {
         // GREEN
@@ -669,15 +653,15 @@ public class LudoPanel extends JPanel {
 
     public void Again(ArrayList<JLayeredPane> pawns, int vfx, Point ptt, int check) {
 
-        try {
-            System.out.println("checking " + ptt.x + " and " + ptt.y);
-        } catch (Exception e) {
-            System.out.println("Error while printing point");
-            e.printStackTrace();
-        }
+//        try {
+//            System.out.println("checking " + ptt.x + " and " + ptt.y);
+//        } catch (Exception e) {
+//           
+//            e.printStackTrace();
+//        }
         for (int i = 0; i < 4; i++) {
             //JLayeredPane oldPawn = pawns.get(i);
-            JLayeredPane temp1;
+           // JLayeredPane temp1;
             JLayeredPane oldPawn = pawns.get(i);
 //            JLayeredPane temp1;
 
@@ -695,7 +679,7 @@ public class LudoPanel extends JPanel {
                     default ->
                         throw new IllegalStateException("Unexpected value: " + check);
                 }
-                // akan theke
+
             } else {
                 Container parent = oldPawn.getParent();
 
@@ -709,70 +693,41 @@ public class LudoPanel extends JPanel {
                     case 0 -> {
                         Point pt = pawns.get(i).getLocation();
                         int Previous = BoardPaths.findPointIndex(BoardPaths.greenPath, pt);
-                        System.out.println("BEFORE + " + pawns.get(i).getLocation() + "  " + Previous);
-                        int Present = BoardPaths.findPointIndex(BoardPaths.greenPath, ptt);
                         temp1 = PawnLocation.addPawnGreenCircle(pt.x, pt.y);
                         if (Previous != -1) {
-                            final JLayeredPane temp = temp1;
+                            animatePawnMove(temp1, pt, ptt, BoardPaths.greenPath, () -> {
 
-                            Timer timer = new Timer(200, null);
-                            final int[] j = {Previous};
-
-                            timer.addActionListener(e -> {
-
-                                if (j[0] >= Present) {
-                                    timer.stop();
-                                    return;
+                                System.out.println("Animation finished!");
+                                int first=0;
+                                for (int j = 0; j < 4; j++) {
+                                    Point checking = greenPawns.get(j).getLocation();
+                                    System.out.println("Pawns Positions"+ j+ "of green"+ checking);
+                                    if(checking == ptt)
+                                    {
+                                        first++;
+                                    }
                                 }
+                                System.out.println("Number of Green pawn"+ptt+" in this position"+ first);
 
-                                j[0]++; // move first
-
-                                Point p = BoardPaths.greenPath[j[0]];
-                                temp.setLocation(p.x, p.y);
-
-                                repaint();
                             });
-
-                            timer.start();
-                            //temp1.setLocation(ptt.x,ptt.y);
-
                         } else {
                             temp1 = PawnLocation.addPawnGreenCircle(ptt.x, ptt.y);
 
                         }
 
-                        System.out.println("AFTER +" + ptt + " " + Present);
                     }
                     case 1 -> {
 
                         Point pt = pawns.get(i).getLocation();
                         int Previous = BoardPaths.findPointIndex(BoardPaths.redPath, pt);
-                        int Present = BoardPaths.findPointIndex(BoardPaths.redPath, ptt);
                         temp1 = PawnLocation.addPawnRedCircle(pt.x, pt.y);
 
                         if (Previous != -1) {
-                            final JLayeredPane temp = temp1;
+                            animatePawnMove(temp1, pt, ptt, BoardPaths.redPath, () -> {
 
-                            Timer timer = new Timer(200, null);
-                            final int[] j = {Previous};
+                                System.out.println("Animation finished!");
 
-                            timer.addActionListener(e -> {
-
-                                if (j[0] >= Present) {
-                                    timer.stop();
-                                    return;
-                                }
-
-                                j[0]++; // move first
-
-                                Point p = BoardPaths.redPath[j[0]];
-                                temp.setLocation(p.x, p.y);
-
-                                repaint();
                             });
-
-                            timer.start();
-
                         } else {
                             temp1 = PawnLocation.addPawnRedCircle(ptt.x, ptt.y);
 
@@ -781,31 +736,13 @@ public class LudoPanel extends JPanel {
                     case 2 -> {
                         Point pt = pawns.get(i).getLocation();
                         int Previous = BoardPaths.findPointIndex(BoardPaths.yellowPath, pt);
-                        int Present = BoardPaths.findPointIndex(BoardPaths.yellowPath, ptt);
-                        System.out.println("BEFORE + " + pawns.get(i).getLocation());
                         temp1 = PawnLocation.addPawnYellowCircle(pt.x, pt.y);
                         if (Previous != -1) {
-                            final JLayeredPane temp = temp1;
+                            animatePawnMove(temp1, pt, ptt, BoardPaths.yellowPath, () -> {
 
-                            Timer timer = new Timer(200, null);
-                            final int[] j = {Previous};
+                                System.out.println("Animation finished!");
 
-                            timer.addActionListener(e -> {
-
-                                if (j[0] >= Present) {
-                                    timer.stop();
-                                    return;
-                                }
-
-                                j[0]++; // move first
-
-                                Point p = BoardPaths.yellowPath[j[0]];
-                                temp.setLocation(p.x, p.y);
-
-                                repaint();
                             });
-
-                            timer.start();
 
                         } else {
                             temp1 = PawnLocation.addPawnYellowCircle(ptt.x, ptt.y);
@@ -814,37 +751,18 @@ public class LudoPanel extends JPanel {
 
                     }
                     case 3 -> {
-                         Point pt = pawns.get(i).getLocation();
+                        Point pt = pawns.get(i).getLocation();
                         int Previous = BoardPaths.findPointIndex(BoardPaths.bluePath, pt);
-                        int Present = BoardPaths.findPointIndex(BoardPaths.bluePath, ptt);
-                        
-                        
+
                         temp1 = PawnLocation.addPawnBlueCircle(pt.x, pt.y);
-                         if (Previous != -1) {
-                            final JLayeredPane temp = temp1;
+                        if (Previous != -1) {
+                            animatePawnMove(temp1, pt, ptt, BoardPaths.bluePath, () -> {
 
-                            Timer timer = new Timer(200, null);
-                            final int[] j = {Previous};
+                                System.out.println("Animation finished!");
 
-                            timer.addActionListener(e -> {
-
-                                if (j[0] >= Present) {
-                                    timer.stop();
-                                    return;
-                                }
-
-                                j[0]++; // move first
-
-                                Point p = BoardPaths.bluePath[j[0]];
-                                temp.setLocation(p.x, p.y);
-
-                                repaint();
                             });
-
-                            timer.start();
-
                         } else {
-                        temp1 = PawnLocation.addPawnBlueCircle(pt.x, pt.y);
+                            temp1 = PawnLocation.addPawnBlueCircle(pt.x, pt.y);
 
                         }
                     }
@@ -862,6 +780,53 @@ public class LudoPanel extends JPanel {
 
         }
         repaint();
+    }
+
+    private void animatePawnMove(
+            JLayeredPane pawn,
+            Point pt,
+            Point ptt,
+            Point[] path,
+            Runnable onComplete // 👈 callback
+    ) {
+        int Previous = BoardPaths.findPointIndex(path, pt);
+        int Present = BoardPaths.findPointIndex(path, ptt);
+
+        if (Previous != -1) {
+            final JLayeredPane temp = pawn;
+
+            Timer timer = new Timer(200, null);
+            final int[] j = {Previous};
+
+            timer.addActionListener(e -> {
+
+                if (j[0] >= Present) {
+                    timer.stop();
+
+                    // ✅ animation শেষ → এখানে run হবে
+                    if (onComplete != null) {
+                        onComplete.run();
+                    }
+                    return;
+                }
+
+                j[0]++;
+                Point p = path[j[0]];
+                temp.setLocation(p.x, p.y);
+
+                repaint();
+            });
+
+            timer.start();
+
+        } else {
+            pawn.setLocation(ptt.x, ptt.y);
+
+            // animation নাই → direct call
+            if (onComplete != null) {
+                onComplete.run();
+            }
+        }
     }
 
 }
